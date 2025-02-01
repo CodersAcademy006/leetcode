@@ -2,6 +2,8 @@
 comments: true
 difficulty: Medium
 edit_url: https://github.com/doocs/leetcode/edit/main/solution/3200-3299/3254.Find%20the%20Power%20of%20K-Size%20Subarrays%20I/README_EN.md
+rating: 1266
+source: Biweekly Contest 137 Q1
 tags:
     - Array
     - Sliding Window
@@ -192,6 +194,52 @@ function resultsArray(nums: number[], k: number): number[] {
     for (let i = k - 1; i < n; ++i) {
         ans.push(f[i] >= k ? nums[i] : -1);
     }
+    return ans;
+}
+```
+
+<!-- tabs:end -->
+
+<!-- solution:end -->
+
+<!-- solution:start -->
+
+### Solution 2
+
+<!-- tabs:start -->
+
+#### TypeScript
+
+```ts
+export function resultsArray(nums: number[], k: number): number[] {
+    const n = nums.length;
+    const ans: number[] = [];
+
+    for (let i = 0, j = 0; i < n; i++) {
+        if (i && nums[i - 1] + 1 !== nums[i]) j = i;
+        if (i >= k - 1) {
+            ans.push(i - k + 1 < j ? -1 : nums[i]);
+        }
+    }
+
+    return ans;
+}
+```
+
+#### JavaScript
+
+```js
+export function resultsArray(nums, k) {
+    const n = nums.length;
+    const ans = [];
+
+    for (let i = 0, j = 0; i < n; i++) {
+        if (i && nums[i - 1] + 1 !== nums[i]) j = i;
+        if (i >= k - 1) {
+            ans.push(i - k + 1 < j ? -1 : nums[i]);
+        }
+    }
+
     return ans;
 }
 ```

@@ -2,6 +2,8 @@
 comments: true
 difficulty: Easy
 edit_url: https://github.com/doocs/leetcode/edit/main/solution/3200-3299/3232.Find%20if%20Digit%20Game%20Can%20Be%20Won/README_EN.md
+rating: 1163
+source: Weekly Contest 408 Q1
 tags:
     - Array
     - Math
@@ -76,7 +78,7 @@ tags:
 
 ### Solution 1: Summation
 
-According to the problem description, as long as the sum of the units digits is not equal to the sum of the tens digits, Xiaohong can always choose a larger sum to win.
+According to the problem description, as long as the sum of the units digits is not equal to the sum of the tens digits, Alice can always choose a larger sum to win.
 
 The time complexity is $O(n)$, where $n$ is the length of the array $\textit{nums}$. The space complexity is $O(1)$.
 

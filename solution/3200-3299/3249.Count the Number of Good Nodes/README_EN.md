@@ -2,6 +2,8 @@
 comments: true
 difficulty: Medium
 edit_url: https://github.com/doocs/leetcode/edit/main/solution/3200-3299/3249.Count%20the%20Number%20of%20Good%20Nodes/README_EN.md
+rating: 1565
+source: Weekly Contest 410 Q2
 tags:
     - Tree
     - Depth-First Search
@@ -179,11 +181,11 @@ public:
             g[b].push_back(a);
         }
         int ans = 0;
-        auto dfs = [&](auto&& dfs, int a, int fa) -> int {
+        auto dfs = [&](this auto&& dfs, int a, int fa) -> int {
             int pre = -1, cnt = 1, ok = 1;
             for (int b : g[a]) {
                 if (b != fa) {
-                    int cur = dfs(dfs, b, a);
+                    int cur = dfs(b, a);
                     cnt += cur;
                     if (pre < 0) {
                         pre = cur;
@@ -195,7 +197,7 @@ public:
             ans += ok;
             return cnt;
         };
-        dfs(dfs, 0, -1);
+        dfs(0, -1);
         return ans;
     }
 };

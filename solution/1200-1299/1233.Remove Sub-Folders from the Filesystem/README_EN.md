@@ -23,7 +23,7 @@ tags:
 
 <p>Given a list of folders <code>folder</code>, return <em>the folders after removing all <strong>sub-folders</strong> in those folders</em>. You may return the answer in <strong>any order</strong>.</p>
 
-<p>If a <code>folder[i]</code> is located within another <code>folder[j]</code>, it is called a <strong>sub-folder</strong> of it.</p>
+<p>If a <code>folder[i]</code> is located within another <code>folder[j]</code>, it is called a <strong>sub-folder</strong> of it. A sub-folder of <code>folder[j]</code> must start with <code>folder[j]</code>, followed by a <code>&quot;/&quot;</code>. For example, <code>&quot;/a/b&quot;</code> is a sub-folder of <code>&quot;/a&quot;</code>, but <code>&quot;/b&quot;</code> is not a sub-folder of <code>&quot;/a/b/c&quot;</code>.</p>
 
 <p>The format of a path is one or more concatenated strings of the form: <code>&#39;/&#39;</code> followed by one or more lowercase English letters.</p>
 
@@ -151,6 +151,24 @@ func removeSubfolders(folder []string) []string {
 		}
 	}
 	return ans
+}
+```
+
+#### TypeScript
+
+```ts
+function removeSubfolders(folder: string[]): string[] {
+    let s = folder[1];
+    return folder.sort().filter(x => !x.startsWith(s + '/') && (s = x));
+}
+```
+
+#### JavaScript
+
+```js
+function removeSubfolders(folder) {
+    let s = folder[1];
+    return folder.sort().filter(x => !x.startsWith(s + '/') && (s = x));
 }
 ```
 
@@ -375,6 +393,85 @@ func removeSubfolders(folder []string) []string {
 		}
 	}
 	return ans
+}
+```
+
+#### TypeScript
+
+```ts
+function removeSubfolders(folder: string[]): string[] {
+    const createTrie = (): T => ({ '#': false, children: {} });
+    const trie = createTrie();
+
+    for (const f of folder) {
+        const path = f.split('/');
+        path.shift();
+
+        let node = trie;
+        for (const p of path) {
+            if (!node.children[p]) node.children[p] = createTrie();
+            node = node.children[p];
+        }
+        node['#'] = true;
+    }
+
+    const ans: string[] = [];
+    const dfs = (trie: T, path = '') => {
+        if (trie['#']) {
+            ans.push(path);
+            return;
+        }
+
+        for (const key in trie.children) {
+            dfs(trie.children[key], path + '/' + key);
+        }
+    };
+
+    dfs(trie);
+
+    return ans;
+}
+
+type T = {
+    '#': boolean;
+    children: Record<string, T>;
+};
+```
+
+#### JavaScript
+
+```js
+function removeSubfolders(folder) {
+    const createTrie = () => ({ '#': false, children: {} });
+    const trie = createTrie();
+
+    for (const f of folder) {
+        const path = f.split('/');
+        path.shift();
+
+        let node = trie;
+        for (const p of path) {
+            if (!node.children[p]) node.children[p] = createTrie();
+            node = node.children[p];
+        }
+        node['#'] = true;
+    }
+
+    const ans = [];
+    const dfs = (trie, path = '') => {
+        if (trie['#']) {
+            ans.push(path);
+            return;
+        }
+
+        for (const key in trie.children) {
+            dfs(trie.children[key], path + '/' + key);
+        }
+    };
+
+    dfs(trie);
+
+    return ans;
 }
 ```
 

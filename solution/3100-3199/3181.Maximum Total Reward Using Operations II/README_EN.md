@@ -110,7 +110,6 @@ class Solution:
 
 ```java
 import java.math.BigInteger;
-import java.util.Arrays;
 
 class Solution {
     public int maxTotalReward(int[] rewardValues) {
@@ -162,6 +161,21 @@ func maxTotalReward(rewardValues []int) int {
 		f.Or(f, p.Lsh(p.And(f, mask), uint(v)))
 	}
 	return f.BitLen() - 1
+}
+```
+
+#### TypeScript
+
+```ts
+function maxTotalReward(rewardValues: number[]): number {
+    rewardValues.sort((a, b) => a - b);
+    rewardValues = [...new Set(rewardValues)];
+    let f = 1n;
+    for (const x of rewardValues) {
+        const mask = (1n << BigInt(x)) - 1n;
+        f = f | ((f & mask) << BigInt(x));
+    }
+    return f.toString(2).length - 1;
 }
 ```
 

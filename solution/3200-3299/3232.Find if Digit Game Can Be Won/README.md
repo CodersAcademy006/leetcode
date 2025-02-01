@@ -2,6 +2,8 @@
 comments: true
 difficulty: 简单
 edit_url: https://github.com/doocs/leetcode/edit/main/solution/3200-3299/3232.Find%20if%20Digit%20Game%20Can%20Be%20Won/README.md
+rating: 1163
+source: 第 408 场周赛 Q1
 tags:
     - 数组
     - 数学
@@ -78,7 +80,7 @@ tags:
 
 ### 方法一：求和
 
-根据题目描述，只要个位数之和不等于两位数之和，那么小红一定可以选择一个较大的和来获胜。
+根据题目描述，只要个位数之和不等于两位数之和，那么 Alice 一定可以选择一个较大的和来获胜。
 
 时间复杂度 $O(n)$，其中 $n$ 是数组 $\textit{nums}$ 的长度。空间复杂度 $O(1)$。
 

@@ -2,6 +2,8 @@
 comments: true
 difficulty: 中等
 edit_url: https://github.com/doocs/leetcode/edit/main/solution/3200-3299/3243.Shortest%20Distance%20After%20Road%20Addition%20Queries%20I/README.md
+rating: 1567
+source: 第 409 场周赛 Q2
 tags:
     - 广度优先搜索
     - 图
@@ -91,7 +93,7 @@ tags:
 
 我们先建立一个有向图 $\textit{g}$，其中 $\textit{g}[i]$ 表示从城市 $i$ 出发可以到达的城市列表，初始时，每个城市 $i$ 都有一条单向道路通往城市 $i + 1$。
 
-然后，我们对每个查询 $[u, v]$，将 $u$ 添加到 $v$ 的出发城市列表中，然后使用 BFS 求出从城市 $0$ 到城市 $n - 1$ 的最短路径长度，将结果添加到答案数组中。
+然后，我们对每个查询 $[u, v]$，将 $v$ 添加到 $u$ 的可达城市列表中，然后使用 BFS 求出从城市 $0$ 到城市 $n - 1$ 的最短路径长度，将结果添加到答案数组中。
 
 最后返回答案数组即可。
 

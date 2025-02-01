@@ -82,8 +82,7 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         d = {}
         for i, x in enumerate(nums):
-            y = target - x
-            if y in d:
+            if (y := target - x) in d:
                 return [d[y], i]
             d[x] = i
 ```
@@ -299,6 +298,25 @@ def two_sum(nums, target)
 end
 ```
 
+#### Kotlin
+
+```kotlin
+class Solution {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+        val m = mutableMapOf<Int, Int>()
+        nums.forEachIndexed { i, x ->
+            val y = target - x
+            val j = m.get(y)
+            if (j != null) {
+                return intArrayOf(j, i)
+            }
+            m[x] = i
+        }
+        return intArrayOf()
+    }
+}
+```
+
 #### Nim
 
 ```nim
@@ -313,6 +331,23 @@ proc twoSum(nums: seq[int], target: int): seq[int] =
       return @[d[y], i]
     d[x] = i
   return @[]
+```
+
+#### Cangjie
+
+```cj
+class Solution {
+    func twoSum(nums: Array<Int64>, target: Int64): Array<Int64> {
+        let d = HashMap<Int64, Int64>()
+        for (i in 0..nums.size) {
+            if (d.contains(target - nums[i])) {
+                return [d[target - nums[i]], i]
+            }
+            d[nums[i]] = i
+        }
+        []
+    }
+}
 ```
 
 <!-- tabs:end -->
